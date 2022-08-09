@@ -7,3 +7,4 @@ migrations/version/__pycache__
 app/admin/__pycache__
 app/general/__pycache__
 app/model/__pycache__
+__pycache__
