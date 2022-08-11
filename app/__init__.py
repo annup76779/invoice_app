@@ -39,15 +39,17 @@ def initialize_extensions(app):
     # callback function to load users.user_id when serializing the jwt identity
     @jwt.user_identity_loader
     def user_identity_lookup(user):
-        return user
+        return user.admin_id
 
     # callback function to load the user object when any protected route in accessed
     # this function takes user_id from the jwt and loads the user accordingly
     @jwt.user_lookup_loader
     def user_lookup_callback(_jwt_header, jwt_data):
         identity = jwt_data["sub"]
-        type_of_user = jwt_data["additional_claim"]["type_of_user"]
-        return Admin.query.filter_by(mob_num = identity, active = True).one_or_none()
+        if isinstance(identity,str) and identity.isnumeric():
+            return Admin.query.get(int(identity))
+        elif isinstance(identity, int):
+            return Admin.query.get(identity)
 
     crypt.init_app(app) # initializing the crypto
 

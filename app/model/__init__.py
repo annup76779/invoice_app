@@ -109,6 +109,7 @@ class Invoice(db.Model):
                         self.df[i] = self.df[i].astype(int)
                     self.df[5] = pd.to_datetime(self.df[5])
                 except Exception as error:
+                    print(error)
                     raise NotValidInvoiceFile("Invalid Date provided") from error
                 self.merge_to_table()
             except Exception as error:

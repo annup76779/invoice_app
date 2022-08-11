@@ -7,7 +7,7 @@ class Config:
     # jwt stuff is done here
     JWT_SECRET_KEY = 'u6weMMZ8E2_qoVY3aW9uU9Mco6osJjLfjDj3gR_RA_dG8CAxsNQEBi4ZbpPIqOGcM0ErguxjpSE' # set this later into environment variable
     JWT_TOKEN_LOCATION = ["headers"]
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=30 * 6)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=30 * 5)
     JWT_QUERY_STRING_NAME = "token"
     JWT_QUERY_STRING_VALUE_PREFIX = "Bearer "
 
