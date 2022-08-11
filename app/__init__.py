@@ -40,7 +40,7 @@ def initialize_extensions(app):
     # callback function to load users.user_id when serializing the jwt identity
     @jwt.user_identity_loader
     def user_identity_lookup(user):
-        return user.admin_id
+        return user
 
     # callback function to load the user object when any protected route in accessed
     # this function takes user_id from the jwt and loads the user accordingly
