@@ -1,6 +1,6 @@
 from flask import Flask, current_app,jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from flask_migrate import Migrate, upgrade
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
 import os
@@ -31,7 +31,8 @@ def create_app(config_cls=None):
 def initialize_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db = db)
-
+    with app.app_context():
+        upgrade()
 
     from app.model import Admin
     jwt.init_app(app)
