@@ -19,7 +19,7 @@ def create_app(config_cls=None):
         if app.config["ENV"] == "production":
             app.config.from_object(configmodule.Production)
         else:
-            app.config.from_object(configmodule.Development)
+            app.config.from_object(configmodule.Production)
     else:
         app.config.from_object(configmodule.Test)
 
