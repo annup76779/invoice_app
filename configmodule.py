@@ -15,7 +15,7 @@ class Development(Config):
     pass
 
 class Production(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = "postgres://hnzofmxxtaylfk:caa68de4b2ca14b21d1b362f190d6913d8ca0f83ac83755bf7cf400e0f626873@ec2-3-224-8-189.compute-1.amazonaws.com:5432/d9avpngqkt0eai"
 
 class Test(Config):
     pass
