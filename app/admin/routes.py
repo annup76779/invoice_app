@@ -30,5 +30,5 @@ def upload_invoice():
         return jsonify(status = False, response = error.message)
     except IntegrityError as error:
         return jsonify(status = False, response = "In your excel there is any `invoice number` which is already used in invoice before last 1000 invoices. Please check it and upload again.")
-    except:
-        return jsonify(status = False, response = "Something went wrong.")
+    except Exception as error:
+        return jsonify(status = False, response = "Something went wrong.", msg=str(error))
