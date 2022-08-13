@@ -31,8 +31,8 @@ def create_app(config_cls=None):
 def initialize_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db = db)
-    # with app.app_context():
-        # upgrade()
+    with app.app_context():
+        upgrade()
 
     from app.model import Admin
     jwt.init_app(app)
