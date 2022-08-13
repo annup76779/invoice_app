@@ -283,19 +283,24 @@ class Invoice(db.Model):
 
     @staticmethod
     def to_csv(date, month, year):
-        try:
+        # try:
             query = Invoice.query.with_entities(Invoice.number, Invoice.password, Invoice.email, Invoice.route_plan, Invoice.customer_name, Invoice.invoice_date, Invoice.invoice_no, Invoice.invoice_amount, Invoice.paid_amount, Invoice.balance_amount, Invoice.pending_since, Invoice.cash, Invoice.cheque_amount, Invoice.bank_name, Invoice.cheque_number, Invoice.cheque_date, Invoice.neft_amount, Invoice.utrn_number, Invoice.neft_date, Invoice.common_cheque, Invoice.no_collection, Invoice.reason, Invoice.note_2000, Invoice.note_500, Invoice.note_200, Invoice.note_100, Invoice.note_50, Invoice.note_20, Invoice.note_10, Invoice.coins, Invoice.total, Invoice.transaction, Invoice.status).filter_by(updated_on = datetime(int(year), int(month), int(date)))
 
             df = pd.DataFrame(query.all(), columns = ['number', 'password', 'email', 'route_plan', 'customer_name', 'invoice_date', 'invoice_no', 'invoice_amount', 'paid_amount', 'balance_amount', 'pending_since', 'cash', 'cheque_amount', 'bank_name', 'cheque_number', 'cheque_date', 'neft_amount', 'utrn_number', 'neft_date', 'common_cheque', 'no_collection', 'reason', 'note_2000', 'note_500', 'note_200', 'note_100', 'note_50', 'note_20', 'note_10', 'coins', 'total', 'transaction', 'status'])
-            file_ = open(os.path.join(current_app.static_folder, "today_csv.csv"), "w")
-            df.to_csv(file_, header=True, 
+            
+            file_writter = open(os.path.join(current_app.static_folder, "today_csv.csv"), "w")
+            file_reader = open(os.path.join(current_app.static_folder, "today_csv.csv"), "r")
+
+            df.to_csv(file_writter, header=True, 
                 columns = ['number', 'password', 'email', 'route_plan', 'customer_name', 'invoice_date', 
                     'invoice_no', 'invoice_amount', 'paid_amount', 'balance_amount', 'pending_since', 'cash', 'cheque_amount', 'bank_name', 
                     'cheque_number', 'cheque_date', 'neft_amount', 'utrn_number', 'neft_date', 'common_cheque', 'no_collection', 'reason', 
                     'note_2000', 'note_500', 'note_200', 'note_100', 'note_50', 'note_20', 'note_10', 'coins', 'total', 'transaction', 'status'],
                 index=False, chunksize = 30
             )
-            return True,file_
-        except Exception as error:
-            print(error)
-            return False, False
+            file_writter.flush()
+            file_writter.close()
+            return True,file_reader
+        # except Exception as error:
+        #     print(error)
+        #     return False, False

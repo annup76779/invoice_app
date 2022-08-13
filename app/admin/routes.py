@@ -7,6 +7,7 @@ from app.model.util import NotValidInvoiceFile
 from app.model import Invoice, Admin
 from flask_jwt_extended import create_access_token, jwt_required
 from datetime import datetime
+import os
 
 
 @admin_bp.route("/login", methods=["POST"])
@@ -43,8 +44,10 @@ def download():
 
     if date.isnumeric() and month.isnumeric() and year.isnumeric():
         status, file_= Invoice.to_csv(date, month, year)
+        print(status, file_)
         if status and file_:
-            return send_file(f"{admin_bp.static_folder}/today_csv.csv", as_attachment = True, download_name = f"{date}-{month}-{year}_csv.csv")
+            file_reader = open(os.path.join(current_app.static_folder, "today_csv.csv"), "rb")
+            return send_file(file_reader, as_attachment = True, download_name = f"{date}-{month}-{year}_csv.csv")
     return abort(404)
 
 @admin_bp.route("/delete")
