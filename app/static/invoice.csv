@@ -1,0 +1,22 @@
+number,password,email,route_plan,customer_name,invoice_date,invoice_no,invoice_amount,paid_amount,balance_amount,pending_since,cash,cheque_amount,bank_name,cheque_number,cheque_date,neft_amount,utrn_number,neft_date,common_cheque,no_collection,reason,note_2000,note_500,note_200,note_100,note_50,note_20,note_10,coins,total,transaction,status
+1,1,MA5202020 - Amir Mondal,CY1000000069 - PH-LALBAUG HILLA TOWER_WKWEDNESDAY,1-NAVIN CHANDRA KARAMSHIAND CO,2022-03-29,IN165904,565,0,565,90,28.0,0.0,nan,0,nan,0.0,0,nan,No,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+1,1,MA5202020 - Amir Mondal,CY1000000069 - PH-LALBAUG HILLA TOWER_WKWEDNESDAY,1-NATIONAL SOAP GENTER GENERAL STORE,2022-03-29,IN165905,574,0,574,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+1,1,MA5202020 - Amir Mondal,CY1000000069 - PH-LALBAUG HILLA TOWER_WKWEDNESDAY,1-ASHAPURA MEDICAL,2022-03-29,IN165906,547,0,547,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+1,1,MA5202020 - Amir Mondal,CY1000000069 - PH-LALBAUG HILLA TOWER_WKWEDNESDAY,1-Janta Medical,2022-03-29,IN165907,501,0,501,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+1,1,MA5202020 - Amir Mondal,CY1000000069 - PH-LALBAUG HILLA TOWER_WKWEDNESDAY,1-RAJESH MEDICAL and GENERAL STORE,2022-03-29,IN165908,583,0,583,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+2,2,MA5202021 - Roshan_9664305718,CY1000000073 - FORT_WKMONDAY,2-shiv stationery and printers,2022-03-24,IN163938,905,0,905,95,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+2,2,MA5202021 - Roshan_9664305718,CY1000000073 - FORT_WKMONDAY,2-Monarch Enterprises,2022-03-29,IN165918,510,0,510,500,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+2,2,MA5202021 - Roshan_9664305718,CY1000000073 - FORT_WKMONDAY,2-KAILASH STATIONERY,2022-03-29,IN165919,501,0,501,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+2,2,MA5202021 - Roshan_9664305718,CY1000000073 - FORT_WKMONDAY,2-Jagruti Stationery Mart,2022-03-29,IN165920,501,0,501,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+2,2,MA5202021 - Roshan_9664305718,CY1000000073 - FORT_WKMONDAY,2-ATLANTIC OFFICE SOLUTION,2022-03-29,IN165921,501,0,501,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+2,2,MA5202021 - Roshan_9664305718,CY1000000073 - FORT_WKMONDAY,2-PRIDE ENTERPRISES,2022-03-29,IN165922,501,0,501,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+3,3,MA5202023 - Suraj_8104025687,CY1000000079 - DONGRI_WKMONDAY,3-depo return,2022-11-03,IN159917,"14,886.00",0,"14,886.00",108,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+3,3,MA5202023 - Suraj_8104025687,CY1000000079 - DONGRI_WKMONDAY,3-depo return,2022-12-03,IN160329,"14,371.00",0,"14,371.00",107,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+3,3,MA5202023 - Suraj_8104025687,CY1000000079 - DONGRI_WKMONDAY,3-Muskan Collection,2022-03-21,IN163103,188,0,188,98,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+3,3,MA5202023 - Suraj_8104025687,CY1000000079 - DONGRI_WKMONDAY,3-Meghdoodh sales corporation,2022-03-28,IN165435,"1,349.00",349,"1,000.00",91,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+3,3,MA5202023 - Suraj_8104025687,CY1000000079 - DONGRI_WKMONDAY,3-LAXMI GENERAL STORE,2022-03-29,IN165923,547,0,547,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+3,3,MA5202023 - Suraj_8104025687,CY1000000079 - DONGRI_WKMONDAY,3-NAGRIK STORE,2022-03-29,IN165924,501,0,501,90,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+4,4,MA5202024 - DBSR_MD Gufran_7303711427,CY1000000085 - CRAWFORD MARKET_WKMONDAY,4-A v kutty general store,2022-09-03,IN159454,674,0,674,110,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+4,4,MA5202024 - DBSR_MD Gufran_7303711427,CY1000000085 - CRAWFORD MARKET_WKMONDAY,4-A v kutty general store,2022-09-03,IN159455,674,0,674,110,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+4,4,MA5202024 - DBSR_MD Gufran_7303711427,CY1000000085 - CRAWFORD MARKET_WKMONDAY,4-POOJA SURGICALS,2022-03-14,IN161102,"5,327.00",0,"5,327.00",105,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False
+5,5,MA5202024 - DBSR_MD Gufran_7303711427,CY1000000085 - CRAWFORD MARKET_WKMONDAY,5-Balwant store,2022-03-19,IN162716,539,0,539,100,nan,nan,nan,0,nan,nan,0,nan,nan,False,nan,0,0,0,0,0,0,0,0,0,nan,False

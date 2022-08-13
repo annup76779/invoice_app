@@ -42,8 +42,8 @@ def download():
     year = request.args.get("year")
 
     if date.isnumeric() and month.isnumeric() and year.isnumeric():
-        status= Invoice.to_csv(date, month, year)
-        if status:
+        status, file_= Invoice.to_csv(date, month, year)
+        if status and file_:
             return send_file(f"{admin_bp.static_folder}/today_csv.csv", as_attachment = True, download_name = f"{date}-{month}-{year}_csv.csv")
     return abort(404)
 
