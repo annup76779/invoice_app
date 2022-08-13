@@ -1,8 +1,10 @@
 import sqlalchemy as sa
 import pandas as pd
 from datetime import datetime
+from pytz import timezone
 from app.model.util import NotValidInvoiceFile
 from app import db, current_app, crypt
+import os
 
 class Admin(db.Model):
     '''admin class'''
@@ -22,39 +24,40 @@ class Invoice(db.Model):
     """invoice table"""
     __tablename__ = "invoice"
 
-    invoice_no = sa.Column(sa.String(10), primary_key=True)
-    number = sa.Column(sa.String(14), nullable = False)
-    password = sa.Column(sa.String(60), nullable = False)
-    email = sa.Column(sa.String(120))
-    route_plan = sa.Column(sa.String(20))
+    number = sa.Column(sa.String(74), nullable = False)
+    password = sa.Column(sa.String(90), nullable = False)
+    email = sa.Column(sa.String(220))
+    route_plan = sa.Column(sa.String(220))
     customer_name = sa.Column(sa.String(225))
     invoice_date = sa.Column(sa.Date)
-    invoice_amount = sa.Column(sa.String(20))
-    paid_amount = sa.Column(sa.String(20))
-    balance_amount = sa.Column(sa.String(20))
-    pending_since = sa.Column(sa.String(20))
-    cash = sa.Column(sa.String(20))
-    cheque_amount = sa.Column(sa.String(25))
+    invoice_no = sa.Column(sa.String(50), primary_key=True)
+    invoice_amount = sa.Column(sa.String(120))
+    paid_amount = sa.Column(sa.String(120))
+    balance_amount = sa.Column(sa.String(120))
+    pending_since = sa.Column(sa.String(120))
+    cash = sa.Column(sa.String(120))
+    cheque_amount = sa.Column(sa.String(125))
     bank_name = sa.Column(sa.String(256))
-    cheque_number = sa.Column(sa.String(35))
-    cheque_date = sa.Column(sa.String(15))
+    cheque_number = sa.Column(sa.String(135))
+    cheque_date = sa.Column(sa.String(115))
     neft_amount = sa.Column(sa.String(30))
-    utrn_number = sa.Column(sa.String(35))
-    neft_date = sa.Column(sa.String(15))
-    common_cheque = sa.Column(sa.String(10))
-    no_collection = sa.Column(sa.String(10))
+    utrn_number = sa.Column(sa.String(135))
+    neft_date = sa.Column(sa.String(115))
+    common_cheque = sa.Column(sa.String(110))
+    no_collection = sa.Column(sa.String(110))
     reason = sa.Column(sa.UnicodeText)
-    note_2000 = sa.Column(sa.String(8))
-    note_500 = sa.Column(sa.String(8))
-    note_200 = sa.Column(sa.String(8))
-    note_100 = sa.Column(sa.String(8))
-    note_50 = sa.Column(sa.String(8))
-    note_20 = sa.Column(sa.String(8))
-    note_10 = sa.Column(sa.String(8))
-    coins = sa.Column(sa.String(8))
-    total = sa.Column(sa.String(25))
-    transaction = sa.Column(sa.String(10))
-    status = sa.Column(sa.String(10))  
+    note_2000 = sa.Column(sa.String(118))
+    note_500 = sa.Column(sa.String(118))
+    note_200 = sa.Column(sa.String(118))
+    note_100 = sa.Column(sa.String(118))
+    note_50 = sa.Column(sa.String(118))
+    note_20 = sa.Column(sa.String(118))
+    note_10 = sa.Column(sa.String(118))
+    coins = sa.Column(sa.String(118))
+    total = sa.Column(sa.String(125))
+    transaction = sa.Column(sa.String(110))
+    status = sa.Column(sa.String(110))
+    updated_on = sa.Column(sa.DateTime)  
 
     def __init__(self, *args, file_io=None):
         if len(args) == 33:
@@ -91,10 +94,11 @@ class Invoice(db.Model):
             self.total = str(args[30])
             self.transaction = str(args[31])
             self.status = str(args[32])
+            self.updated_on = datetime.now(timezone("Asia/Kolkata")).date()
             db.session.add(self)
         else:
             try:
-                self.df = pd.read_csv(file_io, header=0,names=[x for x in range(33)]) # making dataframe 
+                self.df:pd.DataFrame = pd.read_csv(file_io, header=0,names=[x for x in range(33)]) # making dataframe 
                 if len(self.df.columns) != 33:
                     raise Exception
                 try:
@@ -157,6 +161,7 @@ class Invoice(db.Model):
                 invoice.total = str(self.df.iloc[i, 30])
                 invoice.transaction = str(self.df.iloc[i, 31])
                 invoice.status = str(self.df.iloc[i, 32])
+                invoice.updated_on = datetime.now(timezone("Asia/Kolkata")).date()
             else:
                 if invoice_no not in repeated_invoice_in_sheet:
                     invoice = Invoice(*tuple(self.df.iloc[i]))
@@ -196,6 +201,7 @@ class Invoice(db.Model):
                     rp_invoice.total = str(self.df.iloc[i, 30])
                     rp_invoice.transaction = str(self.df.iloc[i, 31])
                     rp_invoice.status = str(self.df.iloc[i, 32])
+                    rp_invoice.updated_on = datetime.now(timezone("Asia/Kolkata")).date()
 
     @staticmethod
     def update_invoice(*args):
@@ -234,6 +240,7 @@ class Invoice(db.Model):
             invoice.total = str(args[30])
             invoice.transaction = str(args[31])
             invoice.status = str(args[32])
+            invoice.updated_on = datetime.now(timezone("Asia/Kolkata")).date()
             db.session.add(invoice)
 
     def to_dict(self):
@@ -272,3 +279,23 @@ class Invoice(db.Model):
             "transaction": self.transaction,
             "utrn_number": self.utrn_number
         }
+
+
+    @staticmethod
+    def to_csv(date, month, year):
+        try:
+            query = Invoice.query.with_entities(Invoice.number, Invoice.password, Invoice.email, Invoice.route_plan, Invoice.customer_name, Invoice.invoice_date, Invoice.invoice_no, Invoice.invoice_amount, Invoice.paid_amount, Invoice.balance_amount, Invoice.pending_since, Invoice.cash, Invoice.cheque_amount, Invoice.bank_name, Invoice.cheque_number, Invoice.cheque_date, Invoice.neft_amount, Invoice.utrn_number, Invoice.neft_date, Invoice.common_cheque, Invoice.no_collection, Invoice.reason, Invoice.note_2000, Invoice.note_500, Invoice.note_200, Invoice.note_100, Invoice.note_50, Invoice.note_20, Invoice.note_10, Invoice.coins, Invoice.total, Invoice.transaction, Invoice.status).filter_by(updated_on = datetime(int(year), int(month), int(date)))
+
+            df = pd.DataFrame(query.all(), columns = ['number', 'password', 'email', 'route_plan', 'customer_name', 'invoice_date', 'invoice_no', 'invoice_amount', 'paid_amount', 'balance_amount', 'pending_since', 'cash', 'cheque_amount', 'bank_name', 'cheque_number', 'cheque_date', 'neft_amount', 'utrn_number', 'neft_date', 'common_cheque', 'no_collection', 'reason', 'note_2000', 'note_500', 'note_200', 'note_100', 'note_50', 'note_20', 'note_10', 'coins', 'total', 'transaction', 'status'])
+
+            df.to_csv(os.path.join(current_app.static_folder, "today_csv.csv"), header=True, 
+                columns = ['number', 'password', 'email', 'route_plan', 'customer_name', 'invoice_date', 
+                    'invoice_no', 'invoice_amount', 'paid_amount', 'balance_amount', 'pending_since', 'cash', 'cheque_amount', 'bank_name', 
+                    'cheque_number', 'cheque_date', 'neft_amount', 'utrn_number', 'neft_date', 'common_cheque', 'no_collection', 'reason', 
+                    'note_2000', 'note_500', 'note_200', 'note_100', 'note_50', 'note_20', 'note_10', 'coins', 'total', 'transaction', 'status'],
+                index=False, chunksize = 30
+            )
+            return True
+        except Exception as error:
+            print(error)
+            return False
